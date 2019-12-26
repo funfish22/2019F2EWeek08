@@ -80,9 +80,9 @@ class App extends React.Component<Props, State> {
   }
 
   handleCloseAdvanced = () => {
-    // this.setState({
-    //   Advanced: false
-    // })
+    this.setState({
+      Advanced: false
+    })
   }
 
   render() {

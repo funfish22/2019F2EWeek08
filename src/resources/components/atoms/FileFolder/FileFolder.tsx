@@ -31,7 +31,7 @@ class FileFolder extends React.Component<Props, State> {
         const {children} = this.props;
         const {star} = this.state;
         return(
-            <FileFolderRoot onClick={(e) => this.handleAddStar(e)}>
+            <FileFolderRoot onClick={this.handleAddStar}>
                 {
                     !star ? <Icon className="icon-folder-24px"></Icon> : <Icon className="icon-folder_special-24px"></Icon>
                 }
