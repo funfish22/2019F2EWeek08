@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 import './reset.css';
 import './index.css';
 import './resources/assets/icon/style.css';
