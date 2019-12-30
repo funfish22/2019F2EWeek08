@@ -41,7 +41,8 @@ const icon_3 = [
 
 interface Props {
     className?: string,
-    Advanced: boolean
+    Advanced: boolean,
+    onOk: Function
 }
 
 interface State {
@@ -69,7 +70,7 @@ class ToolBar extends React.Component<Props, State> {
     }
 
     render() {
-        const { className, Advanced } = this.props;
+        const { className, Advanced, onOk } = this.props;
         const { openNewFolder } = this.state;
         return(
             <ToolBarRoot className={className}>
@@ -87,7 +88,7 @@ class ToolBar extends React.Component<Props, State> {
                             )
                         }
                     </IconRoot>
-                    <NewFolderRoot open={openNewFolder} onClick={this.handleCloseNewFolder}/>
+                    <NewFolderRoot open={openNewFolder} onClick={this.handleCloseNewFolder} onOk={(folderName: string) => onOk(folderName)}/>
                 </Container>
             </ToolBarRoot>
         )

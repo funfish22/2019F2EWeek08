@@ -43,6 +43,32 @@ const initState = {
             size: '102 kb'
         }
     ],
+    folderArray: [
+        {
+            id: 0,
+            name: 'advertisement'
+        },
+        {
+            id: 1,
+            name: 'business'
+        },
+        {
+            id: 2,
+            name: 'commercial'
+        },
+        {
+            id: 3,
+            name: 'customer'
+        },
+        {
+            id: 4,
+            name: 'facebook'
+        },
+        {
+            id: 5,
+            name: 'growth hacker'
+        }
+    ],
     Advanced: false
 }
 
@@ -58,9 +84,17 @@ const ReducerRoot = (state = initState, action) => {
                 Advanced: false
             });
 
+        case Types.ADD_FOLDER :
+            const id = new Date().getTime()
+
+            return {
+                ...state,
+                folderArray: [...state.folderArray, { id, name: action.name }]
+            }
+
         default:
             return state;
-    } 
+    }
 }
 
 export default ReducerRoot;

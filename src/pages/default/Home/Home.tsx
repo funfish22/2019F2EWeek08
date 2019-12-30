@@ -8,8 +8,10 @@ import List from 'resources/components/organisms/List';
 
 interface Props {
     list: any,
+    folderArray: any,
     Advanced: boolean,
-    advanced_open: Function
+    advanced_open: Function,
+    add_folder: Function
 }
 
 interface State { }
@@ -25,13 +27,19 @@ class Home extends React.PureComponent<Props, State> {
         
     }
 
+    handleAddFolder = (folderName: string) => {
+        const { add_folder } = this.props
+
+        add_folder(folderName)
+    }
+
     render() {
-        const { list, Advanced } = this.props
+        const { list, Advanced, folderArray } = this.props
         return(
             <>
-                <ToolBar Advanced={Advanced}/>
+                <ToolBar Advanced={Advanced} onOk={this.handleAddFolder}/>
                 <ListBar showIcon>folders</ListBar>
-                <FolderBlock onClick={this.handleOpenAdvanced}/>
+                <FolderBlock source={folderArray} onClick={this.handleOpenAdvanced}/>
                 <ListBar showIcon>files</ListBar>
                 <List source={list} />
             </>
