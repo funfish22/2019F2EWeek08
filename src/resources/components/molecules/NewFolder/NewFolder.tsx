@@ -5,19 +5,21 @@ import Title from 'resources/components/atoms/Title';
 import Button from 'resources/components/atoms/Button';
 
 interface Props {
-    className?: string
+    className?: string,
+    open: boolean,
+    onClick: any
 }
 
 interface State {}
 
 class NewFolder extends React.Component<Props, State> {
     render() {
-        const { className } = this.props;
+        const { className, onClick } = this.props;
         return(
             <NewFolderRoot className={className}>
                 <Top>
                     <TitleBlock>new folder</TitleBlock>
-                    <IconClose/>
+                    <IconClose onClick={onClick}/>
                 </Top>
                 <InputRoot>
                     <Icon className="icon-folder-24px"></Icon>
@@ -25,7 +27,7 @@ class NewFolder extends React.Component<Props, State> {
                 </InputRoot>
 
                 <ButtonRoot>
-                    <Button>cancel</Button>
+                    <Button onClick={onClick}>cancel</Button>
                     <Button theme="primary" type="submit">ADD</Button>
                 </ButtonRoot>
                 
@@ -40,6 +42,7 @@ const NewFolderRoot = styled.div`
     max-width: 350px;
     padding: 24px 48px;
     box-shadow: 0px 8px 16px rgba(0,0,0,.29);
+    background-color: #fff;
     border-radius: 8px;
     margin-top: 10px;
     position: relative;

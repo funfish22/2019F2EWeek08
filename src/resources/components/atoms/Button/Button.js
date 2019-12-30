@@ -27,7 +27,7 @@ const sizeConfig = {
     }
 };
 
-class Button extends React.PureComponent {
+class Button extends React.PureComponent{
     static defaultProps = {
         theme: 'default',
         size: 'default',
@@ -35,13 +35,13 @@ class Button extends React.PureComponent {
     };
 
     render() {
-        const {style, className, children, theme, size, ...buttonProps} = this.props
+        const {style, className, children, theme, size, onClick, ...buttonProps} = this.props
 
         const themeProps = theme ? themeConfig[theme] : {};
         const sizeProps = size ? sizeConfig[size]: {};
 
         return(
-            <ButtonRoot {...buttonProps} style={style} className={className} config={{...themeProps, ...sizeProps}}>{children}</ButtonRoot>
+            <ButtonRoot {...buttonProps} style={style} onClick={onClick} className={className} config={{...themeProps, ...sizeProps}}>{children}</ButtonRoot>
         )
     }
 }

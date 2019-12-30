@@ -1,3 +1,5 @@
+import { Types } from '../action'
+
 const initState = {
     list: [
         {
@@ -40,11 +42,22 @@ const initState = {
             time: '2019/8/20',
             size: '102 kb'
         }
-    ]
+    ],
+    Advanced: false
 }
 
 const ReducerRoot = (state = initState, action) => {
     switch(action.type){
+        case Types.ADVANCED_OPEN :
+            return Object.assign({}, state, {
+                Advanced: true
+            });
+
+        case Types.ADVANCED_CLOSE :
+            return Object.assign({}, state, {
+                Advanced: false
+            });
+
         default:
             return state;
     } 

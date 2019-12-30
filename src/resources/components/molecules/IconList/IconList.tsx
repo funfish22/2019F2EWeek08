@@ -17,19 +17,23 @@ interface Props {
     source?: Array<{
         id: number,
         icon: string
-    }>
+    }>,
+    onClick: any,
+    open: boolean
 }
 
 interface State {}
 
 class IconList extends React.Component<Props, State> {
     static defaultProps = {
-        source: array
+        source: array,
+        onClick: undefined,
+        open: false
     }
     render() {
-        const { className, source} = this.props;
+        const { className, source, onClick } = this.props;
         return(
-            <IconListRoot className={className}>
+            <IconListRoot className={className} onClick={onClick}>
                 {
                     source && source.map((row) => (
                         <Li key={row.id}>
@@ -51,6 +55,11 @@ const IconListRoot = styled.ul`
 
 const Li = styled.li`
     margin: 0 16px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:first-of-type{
         margin-left: 0;
