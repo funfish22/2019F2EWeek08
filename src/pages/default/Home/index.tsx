@@ -1,15 +1,24 @@
 import Home from './Home';
 import { connect } from 'react-redux'
 
-const mapStateToProps = (state: { 
-    list: any;}) => {
+import {advanced_open} from 'action/index'
+
+const mapStateToProps = (state: 
+    { 
+        list: any;
+        Advanced: boolean;
+    }) => {
     return{
         list: state.list,
+        Advanced: state.Advanced
     }
 }
 
-const mapDispatchToProps = (_dispatch: any) => {
+const mapDispatchToProps = (dispatch: any) => {
     return{
+        advanced_open: (advanced: Boolean) => {
+            dispatch(advanced_open(advanced))
+        },
     }
 }
 

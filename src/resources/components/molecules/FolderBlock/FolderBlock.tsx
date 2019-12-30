@@ -55,15 +55,7 @@ class FolderBlock extends React.Component<Props, State> {
     }
 
     handleChecked = (e:any, id: number) => {
-        const { onClick, source } = this.props;
-        console.log('123')
-
-        // eslint-disable-next-line array-callback-return
-        // source.filter((item) => {
-        //     if(item.id !== id) {
-        //         return item
-        //     }
-        // })
+        const { onClick } = this.props;
 
         onClick(e)
     }

@@ -7,20 +7,29 @@ import ListBar from 'resources/components/organisms/ListBar';
 
 import Router from './Router';
 
-interface Props { }
-
-interface State { 
-    Advanced: boolean
+interface Props { 
+    advanced_close: Function
 }
 
+interface State { }
+
 class App extends React.Component<Props, State> {
+
+    handleCloseAdvanced = () => {
+        const { advanced_close } = this.props
+
+        advanced_close(false)
+    }
+
     render() {
         return (
-            <HashRouter>
-                <Navbar/>
-                <Router/>
-                <ListBarFooter showIcon={false}>storage</ListBarFooter>
-            </HashRouter>
+            <div onClick={this.handleCloseAdvanced}>
+                <HashRouter>
+                    <Navbar/>
+                    <Router/>
+                    <ListBarFooter showIcon={false}>storage</ListBarFooter>
+                </HashRouter>
+            </div>
         );
     }
 }
