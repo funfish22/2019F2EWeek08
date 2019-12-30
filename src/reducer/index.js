@@ -69,6 +69,7 @@ const initState = {
             name: 'growth hacker'
         }
     ],
+    targetFolder: '',
     Advanced: false
 }
 
@@ -84,12 +85,28 @@ const ReducerRoot = (state = initState, action) => {
                 Advanced: false
             });
 
+        case Types.TARGET_FOLDER :
+            return Object.assign({}, state, {
+                targetFolder: action.id
+            });
+
         case Types.ADD_FOLDER :
             const id = new Date().getTime()
 
             return {
                 ...state,
                 folderArray: [...state.folderArray, { id, name: action.name }]
+            };
+
+        case Types.REMOVE_FOLDER :
+            const newFilterArray = state.folderArray.filter((row) => {
+                return row.id !== state.targetFolder
+            })
+
+            return {
+                ...state,
+                folderArray: newFilterArray,
+                targetFolder: ''
             }
 
         default:

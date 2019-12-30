@@ -57,7 +57,7 @@ class FolderBlock extends React.Component<Props, State> {
     handleChecked = (e:any, id: number) => {
         const { onClick } = this.props;
 
-        onClick(e)
+        onClick(e, id)
     }
 
     render() {

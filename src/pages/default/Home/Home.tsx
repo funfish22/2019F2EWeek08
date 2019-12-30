@@ -11,20 +11,22 @@ interface Props {
     folderArray: any,
     Advanced: boolean,
     advanced_open: Function,
-    add_folder: Function
+    add_folder: Function,
+    target_folder: Function,
+    remove_folder: Function
 }
 
 interface State { }
 
 class Home extends React.PureComponent<Props, State> {
 
-    handleOpenAdvanced = (e: MouseEvent) => {
-        const { advanced_open } = this.props
+    handleOpenAdvanced = (e: MouseEvent, id:number) => {
+        const { advanced_open, target_folder } = this.props
 
         e.stopPropagation();
 
         advanced_open(true)
-        
+        target_folder(id)
     }
 
     handleAddFolder = (folderName: string) => {
@@ -34,10 +36,10 @@ class Home extends React.PureComponent<Props, State> {
     }
 
     render() {
-        const { list, Advanced, folderArray } = this.props
+        const { list, Advanced, folderArray, remove_folder } = this.props
         return(
             <>
-                <ToolBar Advanced={Advanced} onOk={this.handleAddFolder}/>
+                <ToolBar Advanced={Advanced} onOk={this.handleAddFolder} onRemove={remove_folder}/>
                 <ListBar showIcon>folders</ListBar>
                 <FolderBlock source={folderArray} onClick={this.handleOpenAdvanced}/>
                 <ListBar showIcon>files</ListBar>
