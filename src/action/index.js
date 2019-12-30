@@ -2,7 +2,9 @@ export const Types = {
     ADVANCED_OPEN: 'toolBar/advanced_open',
     ADVANCED_CLOSE: 'toolBar/advanced_close',
 
-    ADD_FOLDER: 'toolBar/add_folder'
+    TARGET_FOLDER: 'toolbar/target_folder',
+    ADD_FOLDER: 'toolBar/add_folder',
+    REMOVE_FOLDER: 'toolBar/remove_folder'
 }
 
 export const advanced_open = (advanced) => {
@@ -19,9 +21,22 @@ export const advanced_close = (advanced) => {
     }
 }
 
+export const target_folder = (id) => {
+    return{
+        type: Types.TARGET_FOLDER,
+        id
+    }
+}
+
 export const add_folder = (name) => {
     return{
         type: Types.ADD_FOLDER,
         name
+    }
+}
+
+export const remove_folder = () => {
+    return{
+        type: Types.REMOVE_FOLDER
     }
 }

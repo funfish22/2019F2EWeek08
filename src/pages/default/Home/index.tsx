@@ -1,7 +1,7 @@
 import Home from './Home';
 import { connect } from 'react-redux'
 
-import {advanced_open, add_folder} from 'action/index'
+import {advanced_open, add_folder, remove_folder, target_folder} from 'action/index'
 
 const mapStateToProps = (state: 
     { 
@@ -23,6 +23,12 @@ const mapDispatchToProps = (dispatch: any) => {
         },
         add_folder: (name: string) => {
             dispatch(add_folder(name))
+        },
+        remove_folder: () => {
+            dispatch(remove_folder())
+        },
+        target_folder: (id: number) => {
+            dispatch(target_folder(id))
         }
     }
 }

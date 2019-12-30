@@ -32,9 +32,12 @@ const icon_3 = [
     {
         id: 2,
         icon: 'icon-link-24px'
-    },
+    }
+]
+
+const icon_4 = [
     {
-        id: 3,
+        id: 0,
         icon: 'icon-delete-24px'
     }
 ]
@@ -42,7 +45,8 @@ const icon_3 = [
 interface Props {
     className?: string,
     Advanced: boolean,
-    onOk: Function
+    onOk: Function,
+    onRemove: any
 }
 
 interface State {
@@ -70,7 +74,7 @@ class ToolBar extends React.Component<Props, State> {
     }
 
     render() {
-        const { className, Advanced, onOk } = this.props;
+        const { className, Advanced, onOk, onRemove } = this.props;
         const { openNewFolder } = this.state;
         return(
             <ToolBarRoot className={className}>
@@ -84,6 +88,7 @@ class ToolBar extends React.Component<Props, State> {
                                 <>
                                     <Hr />
                                     <IconList source={icon_3} />
+                                    <RemoveIcon source={icon_4} onClick={onRemove}/>
                                 </>
                             )
                         }
@@ -161,4 +166,8 @@ const NewFolderRoot = styled(NewFolder)`
     right: -50px;
     z-index: 3;
     display: ${props => !props.open ? 'none': 'block'};
+`;
+
+const RemoveIcon = styled(IconList)`
+    margin-left: 32px;
 `;
