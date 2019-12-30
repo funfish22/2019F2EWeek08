@@ -7,14 +7,77 @@ import Button from 'resources/components/atoms/Button';
 interface Props {
     className?: string,
     open: boolean,
-    onClick: any
+    onClick: any,
+    onOk: any,
+    ref: React.RefObject<any>
 }
 
-interface State {}
+interface State {
+    folderName: string
+}
 
 class NewFolder extends React.Component<Props, State> {
+    myRef: React.RefObject<any>;
+
+    constructor(props: Readonly<Props>) {
+        super(props);
+        this.state = {
+            folderName: ''
+        };
+        this.myRef = React.createRef();
+    }
+
+    componentDidUpdate() {
+        this.myRef.current.focus();
+    }
+
+    handleAddFolderName = (e: any) => {
+        this.setState({
+            folderName: e.target.value
+        })
+    }
+
+    handleAddFolder = (e:any) => {
+        const { onOk, onClick } = this.props;
+        const { folderName } = this.state;
+
+        if (folderName.trim() === '') {
+            alert('請輸入資料夾名稱')
+        } else {
+            this.setState({
+                folderName: e.target.value
+            })
+            onOk(folderName)
+            onClick()
+        }
+        
+        this.setState({
+            folderName: ''
+        })
+    }
+
+    handleEnter = (e:any) => {
+        const { onOk, onClick } = this.props;
+        const { folderName } = this.state;
+
+        if(e.keyCode === 13) {
+            if (folderName.trim() === '') {
+                alert('請輸入資料夾名稱')
+            } else {
+                onOk(folderName)
+                onClick()
+
+                this.setState({
+                    folderName: ''
+                })
+            }
+            
+        }
+    }
+
     render() {
         const { className, onClick } = this.props;
+        const { folderName } = this.state;
         return(
             <NewFolderRoot className={className}>
                 <Top>
@@ -23,12 +86,12 @@ class NewFolder extends React.Component<Props, State> {
                 </Top>
                 <InputRoot>
                     <Icon className="icon-folder-24px"></Icon>
-                    <Input type="text"/>
+                    <Input type="text" ref={this.myRef} onChange={this.handleAddFolderName} value={folderName} onKeyDown={this.handleEnter}/>
                 </InputRoot>
 
                 <ButtonRoot>
                     <Button onClick={onClick}>cancel</Button>
-                    <Button theme="primary" type="submit">ADD</Button>
+                    <Button onClick={this.handleAddFolder} theme="primary" type="submit">ADD</Button>
                 </ButtonRoot>
                 
             </NewFolderRoot>
