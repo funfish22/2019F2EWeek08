@@ -24,18 +24,21 @@ const icon_3 = [
     {
         id: 0,
         icon: 'icon-star-24px'
-    },
-    {
-        id: 1,
-        icon: 'icon-cloud_download-24px'
-    },
-    {
-        id: 2,
-        icon: 'icon-link-24px'
     }
 ]
 
 const icon_4 = [
+    {
+        id: 0,
+        icon: 'icon-cloud_download-24px'
+    },
+    {
+        id: 1,
+        icon: 'icon-link-24px'
+    }
+]
+
+const icon_5 = [
     {
         id: 0,
         icon: 'icon-delete-24px'
@@ -46,6 +49,7 @@ interface Props {
     className?: string,
     Advanced: boolean,
     onOk: Function,
+    onStar: Function,
     onRemove: any
 }
 
@@ -74,7 +78,7 @@ class ToolBar extends React.Component<Props, State> {
     }
 
     render() {
-        const { className, Advanced, onOk, onRemove } = this.props;
+        const { className, Advanced, onOk, onRemove, onStar } = this.props;
         const { openNewFolder } = this.state;
         return(
             <ToolBarRoot className={className}>
@@ -87,8 +91,9 @@ class ToolBar extends React.Component<Props, State> {
                             Advanced && (
                                 <>
                                     <Hr />
-                                    <IconList source={icon_3} />
-                                    <RemoveIcon source={icon_4} onClick={onRemove}/>
+                                    <StarIcon source={icon_3} onClick={onStar}/>
+                                    <IconList source={icon_4} />
+                                    <RemoveIcon source={icon_5} onClick={onRemove}/>
                                 </>
                             )
                         }
@@ -166,6 +171,10 @@ const NewFolderRoot = styled(NewFolder)`
     right: -50px;
     z-index: 3;
     display: ${props => !props.open ? 'none': 'block'};
+`;
+
+const StarIcon = styled(IconList)`
+    margin-right: 32px;
 `;
 
 const RemoveIcon = styled(IconList)`

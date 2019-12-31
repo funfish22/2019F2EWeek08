@@ -46,32 +46,40 @@ const initState = {
     folderArray: [
         {
             id: 0,
-            name: 'advertisement'
+            name: 'advertisement',
+            star: true
         },
         {
             id: 1,
-            name: 'business'
+            name: 'business',
+            star: false
         },
         {
             id: 2,
-            name: 'commercial'
+            name: 'commercial',
+            star: false
         },
         {
             id: 3,
-            name: 'customer'
+            name: 'customer',
+            star: false
         },
         {
             id: 4,
-            name: 'facebook'
+            name: 'facebook',
+            star: false
         },
         {
             id: 5,
-            name: 'growth hacker'
+            name: 'growth hacker',
+            star: false
         }
     ],
     targetFolder: '',
+    starFolderArray: [],
     Advanced: false
 }
+
 
 const ReducerRoot = (state = initState, action) => {
     switch(action.type){
@@ -82,7 +90,8 @@ const ReducerRoot = (state = initState, action) => {
 
         case Types.ADVANCED_CLOSE :
             return Object.assign({}, state, {
-                Advanced: false
+                Advanced: false,
+                targetFolder: ''
             });
 
         case Types.TARGET_FOLDER :
@@ -95,7 +104,7 @@ const ReducerRoot = (state = initState, action) => {
 
             return {
                 ...state,
-                folderArray: [...state.folderArray, { id, name: action.name }]
+                folderArray: [...state.folderArray, { id, name: action.name, star: false }]
             };
 
         case Types.REMOVE_FOLDER :
@@ -107,6 +116,27 @@ const ReducerRoot = (state = initState, action) => {
                 ...state,
                 folderArray: newFilterArray,
                 targetFolder: ''
+            }
+
+        case Types.ADD_STAR :
+            const targetStar = state.folderArray.filter((row) => {
+                return row.id === action.id
+            })
+
+            const newStarArray = state.folderArray.map((row) => {
+                if(row.id === action.id) {
+                    return {
+                        ...targetStar[0],
+                        star: !row.star
+                    }
+                } else {
+                    return row
+                }
+            })
+
+            return {
+                ...state,
+                folderArray: newStarArray
             }
 
         default:

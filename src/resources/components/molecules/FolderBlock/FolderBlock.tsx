@@ -40,9 +40,11 @@ const array = [
 
 interface Props {
     className?: string,
+    active: number,
     source: Array<{
         id: number,
-        name: string
+        name: string,
+        star: boolean
     }>,
     onClick: Function
 }
@@ -61,14 +63,16 @@ class FolderBlock extends React.Component<Props, State> {
     }
 
     render() {
-        const { className, source } = this.props;
+        const { className, source, active } = this.props;
         return(
             <FolderBlockRoot className={className}>
                 <FolderBlockContainer>
                     { 
-                        source && source.map((row) => (
-                            <FileFolder key={row.id} onClick={(e:any) => this.handleChecked(e, row.id)}>{row.name}</FileFolder>
-                        )) 
+                        source && source.map((row) => {
+                            return (
+                                <FileFolder active={active === row.id} star={row.star} key={row.id} onClick={(e:any) => this.handleChecked(e, row.id)}>{row.name}</FileFolder>
+                            )
+                        }) 
                     }
                     
                 </FolderBlockContainer>

@@ -4,7 +4,9 @@ export const Types = {
 
     TARGET_FOLDER: 'toolbar/target_folder',
     ADD_FOLDER: 'toolBar/add_folder',
-    REMOVE_FOLDER: 'toolBar/remove_folder'
+    REMOVE_FOLDER: 'toolBar/remove_folder',
+
+    ADD_STAR: 'toolbar/add_star'
 }
 
 export const advanced_open = (advanced) => {
@@ -38,5 +40,12 @@ export const add_folder = (name) => {
 export const remove_folder = () => {
     return{
         type: Types.REMOVE_FOLDER
+    }
+}
+
+export const add_star = (id) => {
+    return{
+        type: Types.ADD_STAR,
+        id
     }
 }
