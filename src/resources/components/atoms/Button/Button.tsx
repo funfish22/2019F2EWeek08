@@ -27,7 +27,23 @@ const sizeConfig = {
     }
 };
 
-class Button extends React.PureComponent{
+interface Props {
+    style?: React.CSSProperties,
+    className?: string,
+    children?: string,
+    theme?: 'default' | 'primary',
+    size?: 'default' | 'small',
+    type?: 'button' | 'submit',
+    onClick: any
+};
+
+interface State {};
+
+interface MyStyle {
+    config: any;
+}
+
+class Button extends React.PureComponent<Props, State>{
     static defaultProps = {
         theme: 'default',
         size: 'default',
@@ -49,15 +65,15 @@ class Button extends React.PureComponent{
 export default Button;
 
 const ButtonRoot = styled.button`
-    border: 1px solid ${props => props.config.borderColor};
+    border: 1px solid ${(props: MyStyle) => props.config.borderColor};
     border-radius: 8px;
-    min-width: ${props => props.config.minWeight};
-    min-height: ${props => props.config.minHeight};
-    background-color: ${props => props.config.bgColor};
-    color: ${props => props.config.fontColor};
+    min-width: ${(props: MyStyle) => props.config.minWeight};
+    min-height: ${(props: MyStyle) => props.config.minHeight};
+    background-color: ${(props: MyStyle) => props.config.bgColor};
+    color: ${(props: MyStyle) => props.config.fontColor};
     cursor: pointer;
     font-family: Arial, Helvetica, '微軟正黑體', sans-serif;
-    font-size: ${props => props.config.fontSize};
+    font-size: ${(props: MyStyle) => props.config.fontSize};
     text-transform: uppercase;
 
     /* &:not(:last-of-type){
