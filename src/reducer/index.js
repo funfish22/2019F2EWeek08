@@ -119,14 +119,18 @@ const ReducerRoot = (state = initState, action) => {
             }
 
         case Types.ADD_STAR :
-            const targetStar = state.folderArray.filter((row) => {
+            const targetStar = state.folderArray.find((row) => {
                 return row.id === action.id
             })
+
+            if(targetStar === undefined){
+                return state
+            }
 
             const newStarArray = state.folderArray.map((row) => {
                 if(row.id === action.id) {
                     return {
-                        ...targetStar[0],
+                        ...targetStar,
                         star: !row.star
                     }
                 } else {
