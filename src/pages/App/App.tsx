@@ -3,7 +3,7 @@ import { HashRouter, BrowserRouter} from 'react-router-dom';
 import styled from 'styled-components';
 
 import Navbar from 'resources/components/organisms/Navbar';
-import ListBar from 'resources/components/organisms/ListBar';
+import Footer from 'resources/components/organisms/Footer';
 
 import Router from './Router';
 
@@ -15,6 +15,14 @@ interface State { }
 
 class App extends React.Component<Props, State> {
 
+    componentDidMount() {
+        console.log('123')
+        window.addEventListener('click', (event) => {
+            // event.stopImmediatePropagation();
+            this.handleCloseAdvanced()
+        })
+    }
+
     handleCloseAdvanced = () => {
         const { advanced_close } = this.props
 
@@ -23,20 +31,13 @@ class App extends React.Component<Props, State> {
 
     render() {
         return (
-            <div onClick={this.handleCloseAdvanced}>
-                <HashRouter>
-                    <Navbar/>
-                    <Router/>
-                    <ListBarFooter showIcon={false}>storage</ListBarFooter>
-                </HashRouter>
-            </div>
+            <HashRouter>
+                <Navbar/>
+                <Router/>
+                <Footer>storage</Footer>
+            </HashRouter>
         );
     }
 }
 
 export default App;
-
-const ListBarFooter = styled(ListBar)`
-    background-color: #fff;
-    padding: 24px 0;
-`;
