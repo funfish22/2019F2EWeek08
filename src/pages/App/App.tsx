@@ -62,8 +62,9 @@ class App extends React.Component<Props, State> {
     onDragEnter = (e: any) => {
         e.stopPropagation();
         e.preventDefault();
-        const { drag } = this.props
+        const { drag, drag_root } = this.props
         drag(true)
+        drag_root(true)
         return false;
     }
 
@@ -78,16 +79,17 @@ class App extends React.Component<Props, State> {
         e.preventDefault();
         const { drag, drag_root } = this.props
         drag(false)
-        // drag_root(false)
+        drag_root(false)
         return false;
     }
 
     onDrop = (e:any) => {
         e.preventDefault();
 
-        const { drag } = this.props
+        const { drag, drag_root } = this.props
         let files = e.dataTransfer.files;
         console.log('Files dropped: ', files);
+        drag_root(false)
         for(let i = 0; i < files.length; i++) {
             const path = folder + files[i].name;
             const storageReference = firebase.storage().ref(path);
