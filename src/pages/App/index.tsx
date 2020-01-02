@@ -1,16 +1,18 @@
 import App from './App';
 import { connect } from 'react-redux'
 
-import {advanced_close, drag} from 'action/index'
+import { advanced_close, drag, drag_root } from 'action/index'
 
 const mapStateToProps = (state: 
     { 
         Advanced: boolean;
         footerDrag: boolean;
+        dragRoot: boolean;
     }) => {
     return{
         Advanced: state.Advanced,
-        footerDrag: state.footerDrag
+        footerDrag: state.footerDrag,
+        dragRoot: state.dragRoot
     }
 }
 
@@ -21,7 +23,11 @@ const mapDispatchToProps = (dispatch: any) => {
         },
         drag: (dragSwitch: Boolean) => {
             dispatch(drag(dragSwitch))
+        },
+        drag_root: (dragSwitch: Boolean) => {
+            dispatch(drag_root(dragSwitch))
         }
+        
     }
 }
 

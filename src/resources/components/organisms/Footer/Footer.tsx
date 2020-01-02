@@ -6,7 +6,8 @@ import Title from 'resources/components/atoms/Title';
 interface Props {
     className?: string,
     children: string,
-    footerDrag: boolean
+    footerDrag: boolean,
+    dragRoot: boolean
 }
 
 interface State { }
@@ -17,7 +18,7 @@ interface MyStyle {
 
 class ListBar extends React.Component<Props, State> {
     render() {
-        const { children, className, footerDrag } = this.props;
+        const { children, className, footerDrag, dragRoot } = this.props;
         return (
             <>
                 <ToolBarRoot className={className} drop={footerDrag}>
@@ -38,7 +39,7 @@ class ListBar extends React.Component<Props, State> {
                         }
                     </Container>
                 </ToolBarRoot>
-                <DragContainer drop={footerDrag} id="DragContainer"/>
+                <DragContainer drop={dragRoot} id="DragContainer"/>
                 
             </>
         )

@@ -81,7 +81,8 @@ const initState = {
     targetFolder: '',
     starFolderArray: [],
     Advanced: false,
-    footerDrag: false
+    footerDrag: false,
+    dragRoot: false
 }
 
 
