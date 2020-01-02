@@ -153,6 +153,12 @@ const ReducerRoot = (state = initState, action) => {
                 ...state,
                 footerDrag: action.dragSwitch
             }
+
+        case Types.DRAG_ROOT:
+            return {
+                ...state,
+                dragRoot: action.dragSwitch
+            }
             
         default:
             return state;
