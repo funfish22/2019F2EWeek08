@@ -8,7 +8,8 @@ export const Types = {
 
     ADD_STAR: 'toolbar/add_star',
 
-    DRAG: 'drag/drag'
+    DRAG: 'drag/drag',
+    DRAG_ROOT: 'drag/drag_root'
 }
 
 export const advanced_open = (advanced) => {
@@ -55,6 +56,13 @@ export const add_star = (id) => {
 export const drag = (dragSwitch) => {
     return{
         type: Types.DRAG,
+        dragSwitch
+    }
+}
+
+export const drag_root = (dragSwitch) => {
+    return {
+        type: Types.DRAG_ROOT,
         dragSwitch
     }
 }

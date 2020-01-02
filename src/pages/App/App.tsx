@@ -13,7 +13,9 @@ import Router from './Router';
 interface Props { 
     advanced_close: Function,
     drag: Function,
-    footerDrag: boolean
+    drag_root: Function,
+    footerDrag: boolean,
+    dragRoot: boolean
 }
 
 interface State { }
@@ -32,7 +34,7 @@ class App extends React.Component<Props, State> {
             this.handleCloseAdvanced()
         })
 
-        window.addEventListener('mouseup', this.onDragLeave);
+        // window.addEventListener('mouseup', this.onDragLeave);
         window.addEventListener("dragenter", this.onDragEnter);
         window.addEventListener('dragover', this.onDragOver);;
         DragContainer.addEventListener("dragleave", this.onDragLeave)
@@ -44,7 +46,7 @@ class App extends React.Component<Props, State> {
 
         if(DragContainer === null) return
 
-        window.removeEventListener('mouseup', this.onDragLeave);
+        // window.removeEventListener('mouseup', this.onDragLeave);
         window.removeEventListener('dragenter', this.onDragEnter);
         window.addEventListener('dragover', this.onDragOver);
         DragContainer.removeEventListener('dragleave', this.onDragLeave);
@@ -74,8 +76,9 @@ class App extends React.Component<Props, State> {
     onDragLeave = (e: any) => {
         e.stopPropagation();
         e.preventDefault();
-        const { drag } = this.props
+        const { drag, drag_root } = this.props
         drag(false)
+        // drag_root(false)
         return false;
     }
 
@@ -109,12 +112,12 @@ class App extends React.Component<Props, State> {
     }
 
     render() {
-        const {footerDrag} = this.props
+        const { footerDrag, dragRoot} = this.props
         return (
             <HashRouter>
                 <Navbar/>
                 <Router/>
-                <Footer footerDrag={footerDrag}>storage</Footer>
+                <Footer footerDrag={footerDrag} dragRoot={dragRoot}>storage</Footer>
             </HashRouter>
         );
     }
