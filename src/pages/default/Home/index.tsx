@@ -8,7 +8,7 @@ const mapStateToProps = (state:
         list: any;
         folderArray: any;
         Advanced: boolean;
-        targetFolder: number
+        targetFolder: number;
     }) => {
     return{
         list: state.list,
