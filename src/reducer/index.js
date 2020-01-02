@@ -77,7 +77,8 @@ const initState = {
     ],
     targetFolder: '',
     starFolderArray: [],
-    Advanced: false
+    Advanced: false,
+    footerDrag: false
 }
 
 
@@ -143,6 +144,12 @@ const ReducerRoot = (state = initState, action) => {
                 folderArray: newStarArray
             }
 
+        case Types.DRAG :
+            return {
+                ...state,
+                footerDrag: action.dragSwitch
+            }
+            
         default:
             return state;
     }

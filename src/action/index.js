@@ -6,7 +6,9 @@ export const Types = {
     ADD_FOLDER: 'toolBar/add_folder',
     REMOVE_FOLDER: 'toolBar/remove_folder',
 
-    ADD_STAR: 'toolbar/add_star'
+    ADD_STAR: 'toolbar/add_star',
+
+    DRAG: 'drag/drag'
 }
 
 export const advanced_open = (advanced) => {
@@ -47,5 +49,12 @@ export const add_star = (id) => {
     return{
         type: Types.ADD_STAR,
         id
+    }
+}
+
+export const drag = (dragSwitch) => {
+    return{
+        type: Types.DRAG,
+        dragSwitch
     }
 }
