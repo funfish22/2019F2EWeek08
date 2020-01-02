@@ -1,6 +1,9 @@
 import React from 'react';
 import { HashRouter, BrowserRouter} from 'react-router-dom';
 import styled from 'styled-components';
+import firebase from 'firebase';
+
+import config from 'config/utils/configureFirebase'
 
 import Navbar from 'resources/components/organisms/Navbar';
 import Footer from 'resources/components/organisms/Footer';
@@ -14,6 +17,8 @@ interface Props {
 }
 
 interface State { }
+
+const folder = ""
 
 class App extends React.Component<Props, State> {
 
@@ -76,11 +81,30 @@ class App extends React.Component<Props, State> {
 
     onDrop = (e:any) => {
         e.preventDefault();
+
         const { drag } = this.props
         let files = e.dataTransfer.files;
         console.log('Files dropped: ', files);
-        // Upload files
-        drag(false);
+        for(let i = 0; i < files.length; i++) {
+            const path = folder + files[i].name;
+            const storageReference = firebase.storage().ref(path);
+            const task = storageReference.put(files[i]);
+    
+            task.on(
+                "state_changed",
+                function progress(snapshot) {
+                //   let uploadValue = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+                //   uploaded[i].value = uploadValue;
+                },
+                function error() {
+                    drag(false);
+                },
+                function complete() {
+                    drag(false);
+                }
+            );
+        }
+        
         return false;
     }
 

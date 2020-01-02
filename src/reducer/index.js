@@ -1,5 +1,8 @@
 import { Types } from '../action'
 
+import config from 'config/utils/configureFirebase'
+
+console.log(config);
 const initState = {
     list: [
         {
