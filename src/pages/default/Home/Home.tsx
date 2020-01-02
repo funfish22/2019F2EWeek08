@@ -49,9 +49,9 @@ class Home extends React.PureComponent<Props, State> {
         return(
             <>
                 <ToolBar Advanced={Advanced} onStar={this.handleAddStar} onOk={this.handleAddFolder} onRemove={remove_folder}/>
-                <ListBar showIcon>folders</ListBar>
+                <ListBar>folders</ListBar>
                 <FolderBlock source={folderArray} onClick={this.handleOpenAdvanced} active={targetFolder}/>
-                <ListBar showIcon>files</ListBar>
+                <ListBar>files</ListBar>
                 <List source={list} />
             </>
         )

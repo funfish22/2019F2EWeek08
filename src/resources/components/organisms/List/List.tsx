@@ -141,6 +141,7 @@ export default List;
 const ListRoot = styled.div`
     max-width: 1110px;
     margin: 0 auto;
+    padding-bottom: 113px;
 `;
 
 const ListIcon = styled.div`

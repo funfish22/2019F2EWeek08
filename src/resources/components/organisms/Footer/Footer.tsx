@@ -2,18 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Title from 'resources/components/atoms/Title';
-import IconList from 'resources/components/molecules/IconList';
-
-const icon_1 = [
-    {
-        id: 0,
-        icon: 'icon-view_list-24px'
-    },
-    {
-        id: 1,
-        icon: 'icon-view_module-24px'
-    }
-]
 
 interface Props {
     className?: string
@@ -29,9 +17,9 @@ class ListBar extends React.Component<Props, State> {
             <ToolBarRoot className={className}>
                 <Container>
                     <TitleBlock>{children}</TitleBlock>
-                    <IconRoot>
-                        <IconList source={icon_1} />
-                    </IconRoot>
+                    <Storage>
+                        <span>16 gb </span> / <span>200 gb</span>
+                    </Storage>
                 </Container>
             </ToolBarRoot>
         )
@@ -42,7 +30,11 @@ export default ListBar;
 
 const ToolBarRoot = styled.div`
     padding: 16px 0;
-    margin-top: 32px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
 `;
 
 const Container = styled.div`
