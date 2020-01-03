@@ -155,10 +155,10 @@ const ReducerRoot = (state = initState, action) => {
         case Types.ADD_FILES:
             let newFiles = []
 
-            action.object.forEach((row, index) => {
+            action.object.forEach((row) => {
                 newFiles.push(
                     {
-                        id: row.lastModified + index,
+                        id: row.lastModified + new Date().getTime(),
                         icon: 'assets/img/ic-excel.svg',
                         name: row.name,
                         local: 'my drive',
