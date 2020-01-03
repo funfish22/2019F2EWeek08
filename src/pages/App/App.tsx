@@ -91,26 +91,29 @@ class App extends React.Component<Props, State> {
         let files = e.dataTransfer.files;
         console.log('Files dropped: ', files);
         drag_root(false)
-        add_files(files)
+        let task
         for(let i = 0; i < files.length; i++) {
             const path = folder + files[i].name;
             const storageReference = firebase.storage().ref(path);
-            const task = storageReference.put(files[i]);
-    
-            task.on(
-                "state_changed",
-                function progress(snapshot) {
-                //   let uploadValue = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-                //   uploaded[i].value = uploadValue;
-                },
-                function error() {
-                    drag(false);
-                },
-                function complete() {
-                    drag(false);
-                }
-            );
+            task = storageReference.put(files[i]);
         }
+
+        if(task === undefined) return;
+
+        task.on(
+            "state_changed",
+            function progress(snapshot) {
+            //   let uploadValue = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+            //   uploaded[i].value = uploadValue;
+            },
+            function error() {
+                drag(false);
+            },
+            function complete() {
+                add_files(files)
+                drag(false);
+            }
+        );
         
         return false;
     }
