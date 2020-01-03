@@ -1,7 +1,7 @@
 import App from './App';
 import { connect } from 'react-redux'
 
-import { advanced_close, drag, drag_root } from 'action/index'
+import { advanced_close, drag, drag_root, add_files } from 'action/index'
 
 const mapStateToProps = (state: 
     { 
@@ -26,6 +26,9 @@ const mapDispatchToProps = (dispatch: any) => {
         },
         drag_root: (dragSwitch: Boolean) => {
             dispatch(drag_root(dragSwitch))
+        },
+        add_files: (object: object) => {
+            dispatch(add_files(object))
         }
         
     }
