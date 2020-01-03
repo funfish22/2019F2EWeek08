@@ -1,7 +1,7 @@
 import Home from './Home';
 import { connect } from 'react-redux'
 
-import {advanced_open, add_folder, remove_folder, target_folder, add_star} from 'action/index'
+import {advanced_open, add_folder, remove_folder, target_folder, add_star, sort_files} from 'action/index'
 
 const mapStateToProps = (state: 
     { 
@@ -9,12 +9,14 @@ const mapStateToProps = (state:
         folderArray: any;
         Advanced: boolean;
         targetFolder: number;
+        sortArray: number;
     }) => {
     return{
         list: state.list,
         folderArray: state.folderArray,
         Advanced: state.Advanced,
-        targetFolder: state.targetFolder
+        targetFolder: state.targetFolder,
+        sortArray: state.sortArray
     }
 }
 
@@ -34,6 +36,9 @@ const mapDispatchToProps = (dispatch: any) => {
         },
         add_star: (id: number) => {
             dispatch(add_star(id))
+        },
+        sort_files: (number: number) => {
+            dispatch(sort_files(number))
         }
     }
 }

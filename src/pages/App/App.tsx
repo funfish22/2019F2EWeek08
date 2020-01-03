@@ -14,6 +14,7 @@ interface Props {
     advanced_close: Function,
     drag: Function,
     drag_root: Function,
+    add_files: Function,
     footerDrag: boolean,
     dragRoot: boolean
 }
@@ -86,10 +87,11 @@ class App extends React.Component<Props, State> {
     onDrop = (e:any) => {
         e.preventDefault();
 
-        const { drag, drag_root } = this.props
+        const { drag, drag_root, add_files } = this.props
         let files = e.dataTransfer.files;
         console.log('Files dropped: ', files);
         drag_root(false)
+        add_files(files)
         for(let i = 0; i < files.length; i++) {
             const path = folder + files[i].name;
             const storageReference = firebase.storage().ref(path);

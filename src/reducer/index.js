@@ -1,8 +1,7 @@
 import { Types } from '../action'
 
-import config from 'config/utils/configureFirebase'
+import 'config/utils/configureFirebase'
 
-console.log(config);
 const initState = {
     list: [
         {
@@ -33,14 +32,6 @@ const initState = {
             id: 3,
             icon: 'assets/img/ic-word.svg',
             name: 'New document123.doc',
-            local: 'my drive',
-            time: '2019/8/20',
-            size: '102 kb'
-        },
-        {
-            id: 4,
-            icon: 'assets/img/ic-pdf.svg',
-            name: 'Presentation-Q1.pdf',
             local: 'my drive',
             time: '2019/8/20',
             size: '102 kb'
@@ -82,7 +73,8 @@ const initState = {
     starFolderArray: [],
     Advanced: false,
     footerDrag: false,
-    dragRoot: false
+    dragRoot: false,
+    sortArray: 0
 }
 
 
@@ -159,7 +151,53 @@ const ReducerRoot = (state = initState, action) => {
                 ...state,
                 dragRoot: action.dragSwitch
             }
-            
+
+        case Types.ADD_FILES:
+            let newFiles = []
+
+            action.object.forEach((row, index) => {
+                newFiles.push(
+                    {
+                        id: row.lastModified + index,
+                        icon: 'assets/img/ic-excel.svg',
+                        name: row.name,
+                        local: 'my drive',
+                        time: `${row.lastModifiedDate.getYear() + 1900}/${row.lastModifiedDate.getMonth() + 1}/${row.lastModifiedDate.getDate()}`,
+                        size: '32 mb'
+                    }
+                )
+            })
+
+            const concatFiles = state.list.concat(newFiles)
+
+            return {
+                ...state,
+                list: concatFiles
+            };
+
+        case Types.SORT_FILES:
+            if(action.number === 0) {
+                return {
+                    ...state,
+                    list: state.list.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1),
+                    sortArray: 1
+                }
+            } else if (action.number === 2) {
+                return {
+                    ...state,
+                    list: state.list.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1),
+                    sortArray: 1
+                }
+            } else if (action.number === 1) {
+                return{
+                    ...state,
+                    list: state.list.sort((a, b) => b.name.toLowerCase() > a.name.toLowerCase() ? 1 : -1),
+                    sortArray: 2
+                }
+            } else {
+                return state
+            }
+
         default:
             return state;
     }

@@ -53,20 +53,12 @@ interface Props {
         local: string,
         time: string,
         size: string
-    }>
-}
-
-interface State {
-    source: Array<{
-        id: number,
-        icon: string,
-        name: string,
-        local: string,
-        time: string,
-        size: string
     }>,
+    onClick: any,
     sortArray: number
 }
+
+interface State { }
 
 class List extends React.Component<Props, State> {
     static defaultProps = {
@@ -74,39 +66,13 @@ class List extends React.Component<Props, State> {
         changeSwitch: true
     }
 
-    constructor(props: any) {
-        super(props);
-        this.state = { source: props.source, sortArray:0 };
-    }
-
-    sortName = (e: MouseEvent,sortArray: number) => {
-        e.stopPropagation();
-        const { source } = this.state;
-        this.setState({
-            source: source.sort((a, b) => a.name > b.name ? 1 : -1),
-            sortArray: 1
-        })
-        if (sortArray === 2) {
-            this.setState({
-                source: source.sort((a, b) => a.name > b.name ? 1 : -1),
-                sortArray: 1
-            })
-        } else if (sortArray === 1) {
-            this.setState({
-                source: source.sort((a, b) => b.name > a.name ? 1 : -1),
-                sortArray: 2
-            })
-        }
-    }
-
     render() {
-        const { className } = this.props;
-        const { source, sortArray } = this.state;
+        const { className, source, sortArray, onClick } = this.props;
         return(
             <ListRoot className={className}>
                 <ListHead>
                     <ListIcon />
-                    <ListName onClick={(e: any) => this.sortName(e, sortArray)}>Name
+                    <ListName onClick={onClick}>Name
                         {
                             sortArray === 1 ? <Icon className='icon-arrow_downward-24px' /> : sortArray === 2 && (<Icon className='icon-arrow_upward-24px' />)
                         }

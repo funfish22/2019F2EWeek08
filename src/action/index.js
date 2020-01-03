@@ -6,6 +6,9 @@ export const Types = {
     ADD_FOLDER: 'toolBar/add_folder',
     REMOVE_FOLDER: 'toolBar/remove_folder',
 
+    ADD_FILES: 'toolbar/add_files',
+    SORT_FILES: 'toolbar/sort_files',
+
     ADD_STAR: 'toolbar/add_star',
 
     DRAG: 'drag/drag',
@@ -64,5 +67,19 @@ export const drag_root = (dragSwitch) => {
     return {
         type: Types.DRAG_ROOT,
         dragSwitch
+    }
+}
+
+export const add_files = (object) => {
+    return {
+        type: Types.ADD_FILES,
+        object
+    }
+}
+
+export const sort_files = number => {
+    return {
+        type: Types.SORT_FILES,
+        number
     }
 }
