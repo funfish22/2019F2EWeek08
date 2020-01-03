@@ -74,7 +74,8 @@ const initState = {
     Advanced: false,
     footerDrag: false,
     dragRoot: false,
-    sortArray: 0
+    sortArray: 0,
+    fileLocal: ''
 }
 
 
@@ -153,17 +154,55 @@ const ReducerRoot = (state = initState, action) => {
             }
 
         case Types.ADD_FILES:
-            let newFiles = []
+            let newFiles = [];
+            let fileLocal = state.fileLocal;
+
+            if(state.fileLocal === '') {
+                fileLocal = 'my drive'
+            }
 
             action.object.forEach((row) => {
+                const fileTypeMap = {
+                    png: 'ic_image_24px.svg',
+                    img: 'ic_image_24px.svg',
+                    svg: 'ic_image_24px.svg',
+                    ai: 'ic-ai.svg',
+                    psd: 'ic-ps.svg',
+                    xd: 'ic-xd.svg',
+                    doc: 'ic-word.svg',
+                    docx: 'ic-word.svg',
+                    xls: 'ic-excel.svg',
+                    xlsx: 'ic-excel.svg',
+                    csv: 'ic-excel.svg',
+                    ppt: 'ic-ppt.svg',
+                    pptx: 'ic-ppt.svg',
+                    pdf: 'ic-pdf.svg',
+                    mp3: 'ic-media.svg',
+                    mp4: 'ic-media.svg'
+                }
+
+                let ext = (/[.]/.exec(row.name)) ? /[^.]+$/.exec(row.name)[0] : undefined;
+                let fileType = '';
+                let fileSize = '';
+
+                fileType = fileTypeMap[ext] ? fileTypeMap[ext] : 'ic-unkown.svg';
+
+                if(row.size < 1024) {
+                    fileSize = Math.ceil(row.size / 1024) + ' kb'
+                } else if (row.size >= 1024 || row.size < 102400 ){
+                    fileSize = Math.ceil(row.size / 102400) + ' mb'
+                } else {
+                    fileSize = Math.ceil(row.size / 102400000) + ' gb'
+                }
+                    
                 newFiles.push(
                     {
                         id: row.lastModified + new Date().getTime(),
-                        icon: 'assets/img/ic-excel.svg',
+                        icon: `assets/img/${fileType}`,
                         name: row.name,
-                        local: 'my drive',
+                        local: fileLocal,
                         time: `${row.lastModifiedDate.getYear() + 1900}/${row.lastModifiedDate.getMonth() + 1}/${row.lastModifiedDate.getDate()}`,
-                        size: '32 mb'
+                        size: fileSize
                     }
                 )
             })
