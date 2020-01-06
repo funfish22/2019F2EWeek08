@@ -3,7 +3,7 @@ import { HashRouter, BrowserRouter} from 'react-router-dom';
 import styled from 'styled-components';
 import firebase from 'firebase';
 
-import config from 'config/utils/configureFirebase'
+// import config from 'config/utils/configureFirebase'
 
 import Navbar from 'resources/components/organisms/Navbar';
 import Footer from 'resources/components/organisms/Footer';
@@ -15,6 +15,7 @@ interface Props {
     drag: Function,
     drag_root: Function,
     add_files: Function,
+    getUsersRequest: Function,
     footerDrag: boolean,
     dragRoot: boolean
 }
@@ -24,6 +25,11 @@ interface State { }
 const folder = ""
 
 class App extends React.Component<Props, State> {
+    constructor(props: any) {
+        super(props);
+
+        this.props.getUsersRequest()
+    };
 
     componentDidMount() {
         const DragContainer = document.getElementById('DragContainer')

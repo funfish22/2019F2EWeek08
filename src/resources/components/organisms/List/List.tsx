@@ -1,49 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const array = [
-    {
-        id: 0,
-        icon: 'assets/img/ic-excel.svg',
-        name: 'Ad-benefit-august.csv',
-        local: 'my drive',
-        time: '2019/8/20',
-        size: '6 kb'
-    },
-    {
-        id: 1,
-        icon: 'assets/img/ic-ppt.svg',
-        name: 'How To Pick A Right Web Font.pptx',
-        local: 'my drive',
-        time: '2019/8/20',
-        size: '32 mb'
-    },
-    {
-        id: 2,
-        icon: 'assets/img/ic-pdf.svg',
-        name: 'Presentation-Q1.pdf',
-        local: 'my drive',
-        time: '2019/8/20',
-        size: '10 mb'
-    },
-    {
-        id: 3,
-        icon: 'assets/img/ic-word.svg',
-        name: 'New document.doc',
-        local: 'my drive',
-        time: '2019/8/20',
-        size: '102 kb'
-    },
-    {
-        id: 4,
-        icon: 'assets/img/ic-unkown.svg',
-        name: 'Readme.txt',
-        local: 'my drive',
-        time: '2019/8/20',
-        size: '2 kb'
-    }
-]
-
 interface Props {
     className?: string,
     source?: Array<{
@@ -62,7 +19,6 @@ interface State { }
 
 class List extends React.Component<Props, State> {
     static defaultProps = {
-        source: array,
         changeSwitch: true
     }
 

@@ -10,13 +10,15 @@ const mapStateToProps = (state:
         Advanced: boolean;
         targetFolder: number;
         sortArray: number;
+        over: boolean
     }) => {
     return{
         list: state.list,
         folderArray: state.folderArray,
         Advanced: state.Advanced,
         targetFolder: state.targetFolder,
-        sortArray: state.sortArray
+        sortArray: state.sortArray,
+        over: state.over
     }
 }
 

@@ -1,5 +1,7 @@
 import React from 'react';
-import { createStore,compose } from 'redux';
+import { createStore,compose, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas';
 
 import Entrance from 'pages/App'
 
@@ -15,10 +17,14 @@ declare global {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const sagaMiddleware = createSagaMiddleware();
+
 let store = createStore(
   ReducerRoot,
-  composeEnhancers()
+  composeEnhancers(applyMiddleware(sagaMiddleware))
 )
+
+sagaMiddleware.run(rootSaga);
 
 interface Props { }
 
