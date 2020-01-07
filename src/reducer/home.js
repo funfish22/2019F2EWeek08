@@ -9,7 +9,7 @@ const initState = {
 
 const ReducerRoot = (state = initState, action) => {
     switch(action.type){
-        case Types.GET_USERS_SUCCESS :
+        case Types.GET_FIREBASE_SUCCESS :
             return Object.assign({}, state, {
                 ...action.payload.items,
                 over: true
