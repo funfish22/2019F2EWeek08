@@ -14,8 +14,8 @@ export const Types = {
     DRAG: 'drag/drag',
     DRAG_ROOT: 'drag/drag_root',
 
-    GET_USERS_REQUEST: 'users/get_users_request',
-    GET_USERS_SUCCESS: 'users/get_users_success'
+    GET_FIREBASE_REQUEST: 'firebase/get_firebase_request',
+    GET_FIREBASE_SUCCESS: 'firebase/get_firebase_success'
 }
 
 export const advanced_open = (advanced) => {
@@ -87,12 +87,12 @@ export const sort_files = number => {
     }
 }
 
-export const getUsersRequest = () => ({
-    type: Types.GET_USERS_REQUEST
+export const getFirebaseRequest = () => ({
+    type: Types.GET_FIREBASE_REQUEST
 });
 
-export const getUsersSuccess = ({items}) => ({
-    type: Types.GET_USERS_SUCCESS,
+export const getFirebaseSuccess = ({items}) => ({
+    type: Types.GET_FIREBASE_SUCCESS,
     payload: {
         items
     }

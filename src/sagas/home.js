@@ -1,17 +1,14 @@
 import {takeEvery, takeLatest, take, call, fork, put} from 'redux-saga/effects';
 import * as action from 'action';
-import database from 'config/utils/configureFirebase'
-// import * as api from '../api/users';
+
+import * as api from '../api/homes';
 
 
-function* getUsers(payload) {
+function* getFirebase(payload) {
     
     try{
-        let result
-        yield database.database().ref('upload').once('value', (snapshot) => {
-            result = snapshot.val()
-        })
-        yield put(action.getUsersSuccess({
+        const result = yield call(api.getFirebase);
+        yield put(action.getFirebaseSuccess({
             items: result
         }))
     }catch (e) {
@@ -19,12 +16,12 @@ function* getUsers(payload) {
     }
 }
 
-function* watchGetUsersRequest() {
-    yield takeEvery(action.Types.GET_USERS_REQUEST, getUsers)
+function* watchGetFirebaseRequest() {
+    yield takeEvery(action.Types.GET_FIREBASE_REQUEST, getFirebase)
 }
 
 const usersSagas = [
-    fork(watchGetUsersRequest)
+    fork(watchGetFirebaseRequest)
 ];
 
 export default usersSagas;

@@ -15,7 +15,7 @@ interface Props {
     drag: Function,
     drag_root: Function,
     add_files: Function,
-    getUsersRequest: Function,
+    getFirebaseRequest: Function,
     footerDrag: boolean,
     dragRoot: boolean
 }
@@ -28,7 +28,7 @@ class App extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
 
-        this.props.getUsersRequest()
+        this.props.getFirebaseRequest()
     };
 
     componentDidMount() {

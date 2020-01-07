@@ -1,7 +1,7 @@
 import App from './App';
 import { connect } from 'react-redux'
 
-import { advanced_close, drag, drag_root, add_files, getUsersRequest } from 'action/index'
+import { advanced_close, drag, drag_root, add_files, getFirebaseRequest } from 'action/index'
 
 const mapStateToProps = (state: 
     { 
@@ -30,8 +30,8 @@ const mapDispatchToProps = (dispatch: any) => {
         add_files: (object: object) => {
             dispatch(add_files(object))
         },
-        getUsersRequest: () => {
-            dispatch(getUsersRequest())
+        getFirebaseRequest: () => {
+            dispatch(getFirebaseRequest())
         }
         
     }
